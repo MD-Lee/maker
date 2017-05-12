@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
 
-class CourcesController extends Controller{
+class ResourcesController extends Controller{
 
-    public function cources_lists(){
+    public function resources_list(){
 
-        return view('mobile.cources.cources_lists');
+        return view('mobile.resources.resources_list');
 
     }
 
-    public function cources_add(){
+    public function resources_add(){
 
-        return view('mobile.cources.cources_add');
+        return view('mobile.resources.resources_add');
 
     }
 

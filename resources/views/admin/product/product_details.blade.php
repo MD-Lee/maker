@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title','项目详情')
+@section('title','产品详情')
 @section('content')
     <article class="page-container">
         <form class="form form-horizontal" id="form-article-add">
@@ -64,23 +64,11 @@
                 </div>
             </div>
 
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">状态：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="radio" class="input-radio" >审核通过
-                    <input type="radio" class="input-radio" >审核不通过
-                </div>
-            </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">理由：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <textarea name="abstract" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-                </div>
-            </div>
+
+
             <div class="row cl">
             <div class="col-9 col-offset-2">
-                <input class="btn btn-primary radius" value="&nbsp;&nbsp;提交&nbsp;&nbsp;" type="submit">
+                <input class="btn btn-primary radius" value="&nbsp;&nbsp;返回&nbsp;&nbsp;" type="submit">
             </div>
             </div>
         </form>

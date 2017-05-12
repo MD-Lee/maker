@@ -1,7 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/5/11 0011
- * Time: 9:27
- */
+namespace App\Http\Controllers\Admin;
+
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ResourcesController extends Controller{
+
+    public function resources(Request $request){
+
+        return view('admin.resources.index');
+
+    }
+    public function add_resources(){
+
+        return view('admin.resources.add_resources');
+
+    }
+
+
+}

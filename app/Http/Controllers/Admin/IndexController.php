@@ -1,7 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/5/10 0010
- * Time: 15:26
- */
+namespace App\Http\Controllers\Admin;
+
+
+use App\Http\Controllers\Controller;
+
+class IndexController extends Controller{
+
+    public function login(){
+
+        return view('admin.login');
+
+    }
+    public function index(){
+
+        return view('admin.index');
+
+    }
+
+}

@@ -1,72 +1,67 @@
 @extends('mobile.master')
 
-@section('title','首页')
+@section('title','创客|我的资料')
 @section('content')
-    <div>
-        <ul>
-            <li>王小明</li>
-            <li>余额 <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary">提现</a></li>
-        </ul>
+    <form>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" placeholder="请输入姓名" type="text">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">性别</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+               <input type="radio" value="1">男 <input type="radio" value="2">女
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label for="" class="weui_label">生日:</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" value="2016-12-10" id='date'/>
+
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" required="" pattern="[0-9]{11}" maxlength="11" placeholder="输入你现在的手机号" emptytips="请输入手机号" notmatchtips="请输入正确的手机号" type="tel">
+
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label for="" class="weui_label">省市县:</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" value="" id='ssx'/>
+
+            </div>
+
+        </div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">详细地址</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" placeholder="请输入详细地址" type="text">
+            </div>
+        </div>
 
     </div>
-    <div class="weui_cells weui_cells_access">
-
-        <a class="weui_cell" href="/user_info">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>我的资料</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>金融理财</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_profit">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>分润明细</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/add_project">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>项目建立</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>  <a class="weui_cell" href="/user_project">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>参与的产品</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_resources">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>发布的资源</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_report">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>业务报备</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_code">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>推荐二维码</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-
-
+    <div class="weui_btn_area">
+        <a id="formSubmitBtn" href="javascript:" class="weui_btn weui_btn_primary">提交</a>
     </div>
+   </form>
+    @endsection
+@section('my-js')
+    <script src="/js/zepto.min.js"></script>
+</script><script src="/js/picker.js"></script><script src="/js/picker-city.js"></script>
+    <script>
+        $(function(){
+            $("#date").datetimePicker({title:"选择日期",m:1});
+            $("#ssx").cityPicker({
+                title: "选择省市县"
+            });
+        });
+
+    </script>
     @endsection

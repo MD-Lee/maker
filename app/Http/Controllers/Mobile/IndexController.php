@@ -1,7 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/5/11 0011
- * Time: 17:05
- */
+namespace App\Http\Controllers\Mobile;
+
+
+use App\Http\Controllers\Controller;
+
+class IndexController extends Controller{
+
+
+    public function index(){
+
+        return view('mobile.index');
+
+    }
+
+}

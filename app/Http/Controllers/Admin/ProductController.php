@@ -1,7 +1,26 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/5/10 0010
- * Time: 18:52
- */
+namespace App\Http\Controllers\Admin;
+
+
+use App\Http\Controllers\Controller;
+
+class ProductController extends Controller{
+
+    public function lists(){
+
+        return view('admin.product.lists');
+
+    }
+    public function product_details(){
+
+        return view('admin.product.product_details');
+
+    }
+    public function product_in(){
+
+        return view('admin.product.product_in');
+
+    }
+
+
+}

@@ -1,72 +1,19 @@
 @extends('mobile.master')
 
-@section('title','首页')
+@section('title','创客|业务报备')
 @section('content')
-    <div>
-        <ul>
-            <li>王小明</li>
-            <li>余额 <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary">提现</a></li>
-        </ul>
+    <table class="weui-table weui-border-tb">
 
-    </div>
-    <div class="weui_cells weui_cells_access">
-
-        <a class="weui_cell" href="/user_info">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>我的资料</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="javascript:;">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>金融理财</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_profit">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>分润明细</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/add_project">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>项目建立</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>  <a class="weui_cell" href="/user_project">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>参与的产品</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_resources">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>发布的资源</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_report">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>业务报备</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
-        <a class="weui_cell" href="/user_code">
-            <div class="weui_cell_hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
-            <div class="weui_cell_bd weui_cell_primary">
-                <p>推荐二维码</p>
-            </div>
-            <div class="weui_cell_ft"></div>
-        </a>
+        <tr ><td colspan="2"style="text-align: left">   <a href="/report_details">新型茶园培养基地项目 </a></td></tr>
+        <tr><td>新型茶园培养基地项目</td><td>人力资源</td></tr>
+        <tr><td >状态：已合作</td><td>2017-03-28 12:34</td></tr>
+    </table>
 
 
-    </div>
+    <section class="weui-menu">
+        <div class="weui-menu-inner">
+            <em></em>
+            <a href="report_add"> <span> 新增报备</span></a>
+        </div>
+    </section>
     @endsection

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('mobile.master')
 
 @section('title','注册')
 
@@ -69,8 +69,10 @@
 
     </div>
     <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
+
     </div>
+    <a href="/login" class="bk_bottom_tips bk_important">已有帐号? 去登录</a>
 @endsection
 @section('my-js')
     <script>

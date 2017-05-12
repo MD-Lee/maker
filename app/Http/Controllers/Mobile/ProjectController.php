@@ -1,7 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/5/11 0011
- * Time: 18:10
- */
+namespace App\Http\Controllers\Mobile;
+
+
+use App\Http\Controllers\Controller;
+
+class ProjectController extends Controller{
+
+    public function project_lists(){
+
+        return view('mobile.project.project_lists');
+
+    }
+
+    public function project_details(){
+
+        return view('mobile.project.project_details');
+
+    }
+
+
+}

@@ -1,70 +1,34 @@
 @extends('admin.master')
-@section('title','添加课程')
+@section('title','线下回款')
 @section('content')
 <article class="page-container">
     <form action="" method="post" class="form form-horizontal" id="form-member-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>标题：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>实收费用：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="title" name="title">
+                <input type="text" class="input-text" value="" placeholder="" id="money" name="money">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">分类：</label>
+            <label class="form-label col-xs-4 col-sm-3">支付方式：</label>
             <div class="formControls col-xs-8 col-sm-9">
             <span class="select-box">
                     <select name="" class="select">
-                        <option value="1">新人</option>
-                        <option value="11">├成长案例</option>
+                        <option value="1">现金</option>
+                        <option value="1">支付宝</option>
+                        <option value="1">银行卡</option>
                     </select>
                     </span>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">课程简介：</label>
+            <label class="form-label col-xs-4 col-sm-3">备注：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="beizhu" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" onKeyUp="$.Huitextarealength(this,100)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程目标：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="target" name="target">
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>适用人群：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="@" name="people" id="people">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">课程图片：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <div class="uploader-thum-container">
-                    <div id="fileList" class="uploader-list"></div>
-                    <div id="filePicker"><div class="webuploader-pick">选择图片</div></div>
-                </div>
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">附件：</label>
-            <div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
-				<input class="input-text upload-url" name="uploadfile" id="uploadfile" readonly="" nullmsg="请添加附件！" style="width:200px" type="text">
-				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont"></i> 浏览文件</a>
-				<input multiple="" name="file-2" class="input-file" type="file">
-				</span> </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频时长：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input style="width:250px" type="text" class="input-text" value="" placeholder="" id="target" name="target">-
-                <input style="width:250px" type="text" class="input-text" value="" placeholder="" id="target" name="target">
-            </div>
-        </div>
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
