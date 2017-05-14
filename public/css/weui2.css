@@ -2833,3 +2833,8 @@ font-weight:700;
   -webkit-box-pack: center;
   -webkit-box-align: center;
 }
+.bk_bottom_tips {display: block; padding: 20px 0; width: 100%; text-align: center;}
+.bk_important {
+  font-size: 16px;
+  color: #3CC51F;
+}
