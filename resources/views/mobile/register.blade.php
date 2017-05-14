@@ -4,72 +4,66 @@
 
 
 @section('content')
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="name"  name="name" placeholder="请输入姓名"/>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+
+            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="name"  name="name" placeholder="请输入姓名"/>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="id"  name="idcard" placeholder="请输入身份证号"/>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">身份证</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id"  name="idcard" placeholder="请输入身份证号"/>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">上传身份证</label></div>
-            <div class="weui-uploader__bd">
-                <ul class="weui-uploader__files" id="uploaderFiles">
-                    <img class="weui-uploader__file" id="" ></img>
-                </ul>
-                <div class="weui-uploader__input-box">
-                    <input id="uploaderInput" name="" class="weui-uploader__input" type="file" accept="image/*" multiple/>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">上传身份证</label></div>
+            <div class="weui_uploader_bd">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" accept="image/*" multiple="" type="file">
                 </div>
-
             </div>
-            <div class="weui-uploader__bd">
-                <ul class="weui-uploader__files" id="uploaderFiles">
-                    <img class="weui-uploader__file" id="" ></img>
-                </ul>
-                <div class="weui-uploader__input-box">
-                    <input id="uploaderInput" name="" class="weui-uploader__input" type="file" accept="image/*" multiple/>
+            <div class="weui_uploader_bd">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" accept="image/*" multiple="" type="file">
                 </div>
-
             </div>
         </div>
 
 
 
-        <div class="weui-cell weui-cell_vcode">
-            <div class="weui-cell__hd">
-                <label class="weui-label">手机号</label>
+        <div class="weui_cell weui_cell_vcode">
+            <div class="weui_cell_hd">
+                <label class="weui_label">手机号</label>
             </div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="tel" title="请正确输入" name="tel" pattern="[0-9]*" placeholder="请输入手机号"/>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="tel" title="请正确输入" name="tel" pattern="[0-9]*" placeholder="请输入手机号"/>
             </div>
-            <div class="weui-cell__ft">
-                <button class="weui-vcode-btn">获取验证码</button>
-            </div>
-        </div>
-
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="id" name="validate_code" placeholder="请输入验证码"/>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <a href="javascript:;" class="weui-vcode-btn">获取验证码</a>
             </div>
         </div>
 
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="id"  name="password" placeholder="请输入密码"/>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id" name="validate_code" placeholder="请输入验证码"/>
+            </div>
+        </div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id"  name="password" placeholder="请输入密码"/>
             </div>
         </div>
 
     </div>
-    <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
+    <div class="weui_btn-area">
+        <a class="weui_btn weui_btn_primary" href="javascript:" id="showTooltips">注册</a>
 
     </div>
     <a href="/login" class="bk_bottom_tips bk_important">已有帐号? 去登录</a>
@@ -92,7 +86,7 @@
                     } else {
                         src = e.target.result;
                     }
-                    $(".weui-uploader__file").attr('src',src);
+                    $(".weui_uploader__file").attr('src',src);
 
 
                 }

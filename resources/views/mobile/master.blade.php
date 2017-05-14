@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/weui2.css"/>
     <link rel="stylesheet" href="css/weui3.css"/>
     <link rel="stylesheet" href="css/icon.css"/>
-
 </head>
 <body>
 

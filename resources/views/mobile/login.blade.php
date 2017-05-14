@@ -2,23 +2,25 @@
 
 @section('title','登录')
 @section('content')
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="name"  name="name" />
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+
+            <div class="weui_cell_hd"><label class="weui_label">用户名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="name"  name="name" placeholder="请输入姓名"/>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
-            <div class="weui-cell__bd">
-                <input class="weui-input" type="id"  name="idcard" />
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="id"  name="idcard" />
             </div>
         </div>
     </div>
-    <div class="page__bd page__bd_spacing">
-        <div class="button-sp-area">
-            <a href="javascript:;" class="weui-btn weui-btn_plain-primary">登录</a>
+    <div class="page_bd page_bd_spacing">
+        <div class="button_sp_area">
+            <a href="javascript:;" class="weui_btn weui_btn_plain_primary">登录</a>
 
         </div>
     </div>
