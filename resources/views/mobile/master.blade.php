@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="css/weui.css"/>
-    <link rel="stylesheet" href="css/weui2.css"/>
-    <link rel="stylesheet" href="css/weui3.css"/>
-    <link rel="stylesheet" href="css/icon.css"/>
+    <link rel="stylesheet" href="/css/weui.css"/>
+    <link rel="stylesheet" href="/css/weui2.css"/>
+    <link rel="stylesheet" href="/css/weui3.css"/>
+    <link rel="stylesheet" href="/css/icon.css"/>
 </head>
 <body>
 
@@ -18,9 +18,6 @@
 
 </body>
 
-<script src="/js/php.js"></script>
-<script src="/js/zepto.min.js"></script>
-
-
+<script src="/js/jQuery-2.1.4.min.js"></script>
 @yield('my-js')
 </html>
