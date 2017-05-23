@@ -12,9 +12,18 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+   /* protected $listen = [
+        'App\Events\Event' => [
+            'App\Listeners\EventListener',
+        ],
+    ];*/
     protected $listen = [
         'App\Events\Event' => [
             'App\Listeners\EventListener',
+        ],
+        // 新增SqlListener监听QueryExecuted
+        'Illuminate\Database\Events\QueryExecuted' => [
+            'App\Listeners\SqlListener',
         ],
     ];
 

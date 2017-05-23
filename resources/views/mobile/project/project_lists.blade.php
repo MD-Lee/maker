@@ -2,9 +2,8 @@
 
 @section('title','产品库')
 @section('content')
+    <meta name="_token" content="{{ csrf_token() }}"/>
     <div class="weui_panel weui_panel_access">
-
-
 
             <div class="weui_media_bd">
 
@@ -36,10 +35,7 @@
     <script src="/js/zepto.min.js"></script> <script src="/js/updown.js"></script><script src="/js/lazyimg.js"></script>
     <script>
         $(function(){
-
-
         });
-
     </script>
     <script>
         $(function(){
@@ -61,7 +57,7 @@
                     window.history.pushState(null, document.title, window.location.href);
                     var result = '';
                     $.ajax({
-                        type: 'GET',
+                        type: 'post',
                         url:'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
                         dataType: 'json',
                         success: function(data){
