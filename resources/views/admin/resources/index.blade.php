@@ -4,7 +4,7 @@
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 资源库 <span class="c-gray en">&gt;</span> 寻求资源 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
 
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="resources_add('添加资源','/admin/add_resources','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加资源</a></span>  </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="resources_add('添加资源','/admin/add_resources/{{$t}}',800,500)" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加资源</a></span>  </div>
 
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -19,18 +19,18 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($resouces_list as $v)
                 <tr class="text-c">
-
-                    <td>10001</td>
-                    <td>谁有新兴茶园培育基地资源</td>
-                     <td>王建一</td>
-                    <td>2014-6-11 11:11:42</td>
+                    <td>{{$v->id}}</td>
+                    <td>{{$v->resource_name}}</td>
+                     <td>{{$v->uname}}</td>
+                    <td>{{$v->created_at}}</td>
                     <td class="f-14 td-manage">
-                        <a style="text-decoration:none" class="ml-5" onClick="resources_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                        <a style="text-decoration:none" class="ml-5" onClick="resources_del(this,'{{$v->id}}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 
                     </td>
                 </tr>
-
+@endforeach
                 </tbody>
             </table>
         </div>
@@ -57,11 +57,19 @@
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
                     type: 'POST',
-                    url: '',
+                    url: '/admin/del_resource/'+id,
                     dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
                     success: function(data){
-                        $(obj).parents("tr").remove();
-                        layer.msg('已删除!',{icon:1,time:1000});
+                        if(data.error = 1){
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:1000});
+                        }else{
+                            alert("删除失败");
+                        }
+
                     },
                     error:function(data) {
                         console.log(data.msg);

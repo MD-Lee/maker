@@ -48,35 +48,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($project_report as $v)
                 <tr class="text-c">
-                    <td>10001</td>
-                    <td>新兴茶园培育基地项目</td>
-                     <td>土地绿化-种植</td>
-                     <td>青岛九星高科有限公司</td>
-                     <td>2000.00</td>
-                     <td>待回款</td>
-                     <td></td>
+                    <td>{{$v->id}}</td>
+                    <td>{{$v->product_name}}</td>
+                     <td>{{$v->pname}}</td>
+                     <td>{{$v->customer_name}}</td>
+                     <td>{{$v->amount}}</td>
+                     <td>{{$v->bstatus_name}}</td>
+                     <td>{{$v->pay_method}}</td>
                     <td class="f-14 td-manage">
-                        <a style="text-decoration:none" class="ml-5" onclick="payment_add('线下收款','/admin/add_payment','800','500')" href="javascript:;" title="收款"><i class="Hui-iconfont">&#xe6df;</i></a>
-                        <a style="text-decoration:none" class="ml-5" onClick="payment_details('查看','/admin/report_details','10001')" href="javascript:;" title="查看"><i class="Hui-iconfont">&#xe709;</i></a>
-                        <a style="text-decoration:none" class="ml-5" onClick="payment_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-
+                      @if($v->bstatus ==2)  <a style="text-decoration:none" class="ml-5" onclick="payment_add('线下收款','/admin/add_payment/{{$v->id}}','800','500')" href="javascript:;" title="收款">收款</a>@endif
+                        <a style="text-decoration:none" class="ml-5" onClick="payment_details('查看','/admin/report_details/{{$v->id}}/1')" href="javascript:;" title="查看">详情</a>
+                        <a style="text-decoration:none" class="ml-5" onClick="payment_del(this,'{{$v->id}}')" href="javascript:;" title="删除">删除</a>
                     </td>
                 </tr>
-                <tr class="text-c">
-                    <td>10001</td>
-                    <td>新兴茶园培育基地项目</td>
-                    <td>土地绿化-种植</td>
-                    <td>青岛九星高科有限公司</td>
-                    <td>2000.00</td>
-                    <td>已回款</td>
-                    <td>支付宝</td>
-                    <td class="f-14 td-manage">
-                        <a style="text-decoration:none" class="ml-5" onClick="payment_details('详情','/admin/report_details','10001')" href="javascript:;" title="详情"><i class="Hui-iconfont">&#xe6df;</i></a>
-                          <a style="text-decoration:none" class="ml-5" onClick="payment_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-
-                    </td>
-                </tr>
+                @endforeach
+                
                 </tbody>
             </table>
         </div>
@@ -111,11 +99,19 @@
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
                     type: 'POST',
-                    url: '',
+                    url: '/admin/del_payment/'+id,
                     dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
                     success: function(data){
-                        $(obj).parents("tr").remove();
-                        layer.msg('已删除!',{icon:1,time:1000});
+                        if(data.error ==1){
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:1000});
+                        }else{
+                            alert("删除失败");
+                        }
+
                     },
                     error:function(data) {
                         console.log(data.msg);

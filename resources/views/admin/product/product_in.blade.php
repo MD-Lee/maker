@@ -18,37 +18,32 @@
             <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">
             <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i>搜索</button>
         </div>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"></div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
                 <tr class="text-c">
                     <th width="80">序号</th>
                     <th width="80">参与人</th>
+                    <th width="80">手机号</th>
                     <th width="80">报备客户</th>
                     <th width="80">状态</th>
                     <th width="120">参与时间</th>
                 </tr>
                 </thead>
                 <tbody>
+@foreach($member_join_project as $v)
                 <tr class="text-c">
 
-                    <td>10001</td>
-                    <td>王小明</td>
-                    <td>青岛九星高科有限公司</td>
-                    <td>已合作</td>
-                    <td>2014-6-11 11:11:42</td>
+                    <td>{{$v->id}}</td>
+                    <td>{{$v->uname}}</td>
+                    <td>{{$v->mobile}}</td>
+                    <td>{{$v->customer_name}}</td>
+                    <td>{{$v->status}}</td>
+                    <td>{{$v->created_at}}</td>
 
                 </tr>
-                <tr class="text-c">
-
-                    <td>10002</td>
-                    <td>王小明</td>
-                    <td>青岛九星高科有限公司</td>
-                    <td>已合作</td>
-                    <td>2014-6-11 11:11:41</td>
-
-                </tr>
+@endforeach
                 </tbody>
             </table>
         </div>

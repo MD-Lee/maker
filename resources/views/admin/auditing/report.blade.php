@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('title','产品库')
+@section('title','报备审核')
 @section('content')
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 财务中心 <span class="c-gray en">&gt;</span> 报备审核 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
@@ -43,22 +43,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($projects_report as $v)
                 <tr class="text-c">
 
-                     <td>10001</td>
-                     <td>新兴茶园培育基地项目</td>
-                     <td>土地绿化-种植</td>
-                     <td>青岛九星高科有限公司</td>
-                     <td>王小明</td>
-                     <td>已发布</td>
+                     <td>{{$v->id}}</td>
+                     <td>{{$v->product_name}}</td>
+                     <td>{{$v->pname}}</td>
+                     <td>{{$v->customer_name}}</td>
+                     <td>{{$v->uname}}</td>
+                     <td>{{$v->status}}</td>
 
                     <td class="f-14 td-manage">
-                        <a style="text-decoration:none" class="ml-5" onClick="report_details('详情','/admin/report_details','10001')" href="javascript:;" title="详情"><i class="Hui-iconfont">&#xe6df;</i></a>
-                        <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                        <a style="text-decoration:none" class="ml-5" onClick="report_details('详情','/admin/report_details/{{$v->id}}')" href="javascript:;" title="详情"><i class="Hui-iconfont">&#xe6df;</i></a>
+                        <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'{{$v->id}}')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 
                     </td>
                 </tr>
-
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -93,26 +94,25 @@
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
                     type: 'POST',
-                    url: '',
+                    url: '/admin/del_report/'+id,
                     dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
                     success: function(data){
-                        $(obj).parents("tr").remove();
-                        layer.msg('已删除!',{icon:1,time:1000});
+                        if(data.error ==1){
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:1000});
+                        }else{
+                            alert("删除失败");
+                        }
+
                     },
                     error:function(data) {
                         console.log(data.msg);
                     },
                 });
             });
-        }
-        /*课程-添加*/
-        function cources_add(title,url){
-            var index = layer.open({
-                type: 2,
-                title: title,
-                content: url
-            });
-            layer.full(index);
         }
 
     </script>
