@@ -4,5 +4,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Withdraw_cash extends Model {
     protected  $table='withdraw_cash';
+    protected $fillable = ['mid','money','pid','type'];
 }
 

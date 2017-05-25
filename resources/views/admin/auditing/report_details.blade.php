@@ -6,50 +6,45 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">项目名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    人力资源
+                    {{$report_info->product_name}}
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">产品名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    新兴茶园培育基地项目
+                    {{$report_info->pname}}
                 </div>
             </div>
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">客户全称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    青岛九星高科有限公司
+                    {{$report_info->customer_name}}
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">客户所在地：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    山东省-青岛市-李沧区
+                    {{$report_info->customer_area}}
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">详细地址：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    九水路20号
+                    {{$report_info->customer_address}}
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">解决了哪些根本性问题：</label>
-                <div class="formControls col-xs-8 col-sm-9">
 
-                </div>
-            </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">客户需求：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-
+                    {{$report_info->customer_require}}
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">跟进情况：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    跟进情况等
+                    {{$report_info->follow}}
                 </div>
             </div>
             <div class="row cl">
@@ -61,24 +56,36 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">上传合同：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    合作合同.doc
+                    {{$report_info->agreement_doc}}
                 </div>
             </div>
 
 
             历史跟进情况
+            @foreach($follow_infos as $v)
             <div class="row cl">
 
                 <div class="formControls col-xs-8 col-sm-9">
-                    跟进情况等等等等等等等等等等等等等等
+                  {{$v->content}}
                 </div>
             </div>
-            <div class="row cl">
+            @endforeach
 
-                <div class="formControls col-xs-8 col-sm-9">
-                    跟进情况等等等等等等等等等等等等等等
+            @if($t)
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">实收金额：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        {{$report_info->bamount}}
+                    </div>
                 </div>
-            </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">备注：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        {{$report_info->content}}
+                    </div>
+                </div>
+                @endif
+
         </form>
     </article>
 @endsection

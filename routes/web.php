@@ -49,14 +49,17 @@ Route::any('index','Admin\IndexController@index');
 //项目建立
 Route::any('project','Admin\ProjectController@index');
 
-Route::any('project_details','Admin\ProjectController@project_details');
+Route::any('project_details/{id}','Admin\ProjectController@project_details');
+Route::any('del_project/{id}','Admin\ProjectController@del_project');
+Route::any('delall_project','Admin\ProjectController@delall_project');
 //产品库
 Route::any('product','Admin\ProductController@lists');
 Route::any('product_details','Admin\ProductController@product_details');
-Route::any('product_in','Admin\ProductController@product_in');
+Route::any('product_in/{id}','Admin\ProductController@product_in');
 //资源
-Route::any('resources','Admin\ResourcesController@resources');
-Route::any('add_resources','Admin\ResourcesController@add_resources');
+Route::any('resources/{t}','Admin\ResourcesController@resources');
+Route::any('add_resources/{t?}','Admin\ResourcesController@add_resources');
+Route::any('del_resource/{id}','Admin\ResourcesController@del_resource');
 //在线培训
 Route::any('cources_list','Admin\CourcesController@cources_list');
 Route::any('add_cources','Admin\CourcesController@add_cources');
@@ -65,11 +68,14 @@ Route::any('add_classification','Admin\CourcesController@add_classification');
 
 //在线审核
 Route::any('report','Admin\AuditingController@report');
-Route::any('report_details','Admin\AuditingController@report_details');
+Route::any('report_details/{id}/{t?}','Admin\AuditingController@report_details');
+Route::any('del_report/{id}','Admin\AuditingController@del_report');
 
 Route::any('payment','Admin\AuditingController@payment');
-Route::any('add_payment','Admin\AuditingController@add_payment');
+Route::any('add_payment/{id?}','Admin\AuditingController@add_payment');
+Route::any('del_payment/{id?}','Admin\AuditingController@del_payment');
 Route::any('profit','Admin\AuditingController@profit');
+Route::any('profit_send/{id}','Admin\AuditingController@profit_send');
 
 //设置
 Route::any('setting','Admin\SettingController@setting');

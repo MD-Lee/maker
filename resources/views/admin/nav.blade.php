@@ -21,8 +21,8 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 资源管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="resources?=1" data-title="寻求资源" href="javascript:void(0)">寻求资源</a></li>
-                    <li><a data-href="resources?t=2" data-title="提供资源" href="javascript:void(0)">提供资源</a></li>
+                    <li><a data-href="resources/1" data-title="寻求资源" href="javascript:void(0)">寻求资源</a></li>
+                    <li><a data-href="resources/2" data-title="提供资源" href="javascript:void(0)">提供资源</a></li>
 
                 </ul>
             </dd>
