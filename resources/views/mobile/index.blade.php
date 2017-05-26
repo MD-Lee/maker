@@ -25,36 +25,48 @@
         </ul>
 
     </div>
-   <table class="weui-table weui-border-tb">
-       <tbody>
+   <table class="index_table" cellpadding="0" cellspacing="0">
        <tr>
            <td>
                <a href="/project_lists">产品库</a>
            </td>
            <td><a href="/resources_list">资源库</a></td>
        </tr>
-
        <tr>
            <td> <a href="/cources_lists">在线培训</a></td>
            <td><a href="/person_center">个人中心</a></td>
        </tr>
-       </tbody>
    </table>
+   <div class="blank"></div>
 
-   产品信息
-   <table class="weui-table weui-border-tb">
+   <div class="product_title">产品信息</div>
+   <div class="index_con">
+   <table class="report_table">
 
-       <tr ><td colspan="2"style="text-align: left">   <a href="/project_details">新型茶园培养基地项目 </a></td></tr>
-       <tr><td>人力资源</td><td>2017-03-28 12:34</td></tr>
-       <tr><td>青岛市-李沧区</td><td>已有100人参与</td></tr>
+       <tr>
+       	<td class="title" colspan="2"><a href="/project_details">新型茶园培养基地项目 </a></td>
+       </tr>
+       <tr>
+       	<td>人力资源</td><td>2017-03-28 12:34</td>
+       </tr>
+       <tr>
+       	<td>青岛市-李沧区</td><td>已有100人参与</td>
+       </tr>
+       <tr><td class="line" colspan="2"></td></tr>
 
-
-
-       <tr ><td colspan="2"style="text-align: left">新型茶园培养基地项目</td></tr>
-       <tr><td>人力资源</td><td>2017-03-28 12:34</td></tr>
-       <tr><td>青岛市-李沧区</td><td>已有100人参与</td></tr>
+       <tr>
+       	<td class="title" colspan="2"><a href="/project_details">新型茶园培养基地项目2017 </a></td>
+       </tr>
+       <tr>
+       	<td>人力资源</td><td>2017-03-28 12:34</td>
+       </tr>
+       <tr>
+       	<td>青岛市-李沧区</td><td>已有100人参与</td>
+       </tr>
+       <tr><td class="line" colspan="2"></td></tr>
 
    </table>
+   </div>
 
 
    <section class="weui-menu">

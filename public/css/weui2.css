@@ -2009,8 +2009,12 @@ weui-box*/
 	background-clip: padding-box
 }
 /*上下拉*/
-.dropload-up,.dropload-down{position:relative;height:0;overflow:hidden;font-size:12px;-webkit-transform:translateZ(0);transform:translateZ(0)}.dropload-down{height:50px}.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{height:50px;line-height:50px;text-align:center}
-.weui-updown{-webkit-animation:weui-updown .3s linear;animation:opacity .3s linear}@-webkit-keyframes weui-updown{0%{opacity:0}100%{opacity:1}}@keyframes weui-updown{0%{opacity:0}100%{opacity:1}}
+.dropload-up,.dropload-down{position:relative;height:0;overflow:hidden;font-size:12px;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.dropload-down{height:50px; background:#eee; border:none;}
+.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{height:50px;line-height:50px;text-align:center}
+.weui-updown{-webkit-animation:weui-updown .3s linear;animation:opacity .3s linear}
+.dropload-noData{height:50px;line-height:50px;text-align:center; font-size:14px; border:none;}
+@-webkit-keyframes weui-updown{0%{opacity:0}100%{opacity:1}}@keyframes weui-updown{0%{opacity:0}100%{opacity:1}}
 .page-hd {
     padding:20px;
 }.page-hd-title {
@@ -2838,3 +2842,16 @@ font-weight:700;
   font-size: 16px;
   color: #3CC51F;
 }
+
+.report_table{ width:100%; overflow:hidden; background:#fff;}
+.report_table tr td{ padding:0px 6px 2px; font-size:14px; color:#666;}
+.report_table tr td.title{ padding:4px 6px; font-size:16px;}
+.report_table tr td.title a{color:#333;}
+.report_table tr td.line{ height:1px; background:#f6f6f6; padding:0}
+
+.index_table{ width:100%; overflow:hidden; background:#fff; border-collapse:none;}
+.index_table tr td{ padding:10px; text-align:center; border-right:1px solid #f2f2f2; border-bottom:1px solid #f2f2f2;}
+.index_table tr td a{ color:#333;}
+.blank{ background:#eee; height:10px;}
+.product_title{ background:#fff; border-bottom:1px solid #f2f2f2; height:50px; line-height:50px; text-indent:10px;}
+.index_con{ padding:0 10px;background:#fff;}

@@ -5,13 +5,21 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <div class="weui_panel weui_panel_access">
 
-    <table class="weui-table weui-border-tb">
-@foreach($user_report as $up)
-        <tr ><td colspan="2"style="text-align: left">   <a href="/report_details/{{$up->id}}">{{$up->customer_name}}</a></td></tr>
-        <tr><td>{{$up->product_name}}</td><td>{{$up->pname}}</td></tr>
-        <tr><td >状态：{{$up->status}}</td><td>{{$up->created_at}}</td></tr>
-
-  @endforeach
+    <table class="report_table" cellpadding="0" cellspacing="0">
+        @foreach($user_report as $up)
+            <tr>
+            	<td class="title" colspan="2">   <a href="/report_details/{{$up->id}}">{{$up->customer_name}}</a></td>
+            </tr>
+            <tr>
+            	<td style="width:50%">{{$up->product_name}}</td>
+                <td style="width:50%">{{$up->pname}}</td>
+            </tr>
+            <tr>
+            	<td>状态：{{$up->status}}</td>
+                <td>{{$up->created_at}}</td>
+            </tr>
+            <tr><td class="line" colspan="2"></td></tr>
+        @endforeach
     </table>
 
 
