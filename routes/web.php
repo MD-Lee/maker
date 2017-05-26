@@ -11,6 +11,10 @@
 |
 */
 
+/*授权目录*/
+Route::get('MP_verify_pmpAsuvps9qrYRnk.txt', function () {
+    return "pmpAsuvps9qrYRnk";
+});
 
 Route::get('/login','Mobile\MemberController@toLogin');
 Route::get('/register','Mobile\MemberController@toRegister');
