@@ -16,14 +16,23 @@ return [
     /*
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
-    //'app_id'  => env('WECHAT_APPID', 'wxb489cd0c1be9ae36'),         // AppID
     'app_id'  => env('WECHAT_APPID', 'wxef4d12ae0a86b2ad'),         // AppID
     //'secret'  => env('WECHAT_SECRET', '41a019b0f97844282290859b75c986ee'),     // AppSecret
     'secret'  => env('WECHAT_SECRET', 'b34b07704e430baf2e97f357d519af64'),     // AppSecret
     'token'   => env('WECHAT_TOKEN', 'q0I07jGMQZ4S3TjJ3440wJ7q4qQnPW9t'),          // Token
-    'aes_key' => env('WECHAT_AES_KEY', 'ABZCkdb0NwKHROaw6wLybri1fnkhPGAMkw9o1h8D21M'),                    // EncodingAESKey
+    'aes_key' => env('WECHAT_AES_KEY', 'RZA5eG5iakSE9zgoe78CEeZpHE89LL5R66Hg8oeGe79'),                    // EncodingAESKey
 
 
+    /**
+     * 开放平台第三方平台配置信息
+     */
+    //'open_platform' => [
+        /**
+         * 事件推送URL
+         */
+        //'serve_url' => env('WECHAT_OPEN_PLATFORM_SERVE_URL', 'serve'),
+    //],
+    
     /*
      * 日志配置
      *
@@ -35,16 +44,7 @@ return [
         'level' => env('WECHAT_LOG_LEVEL', 'debug'),
         'file'  => env('WECHAT_LOG_FILE', storage_path('logs/wechat.log')),
     ],
-      'oauth' => [
-              'scopes'   => ['snsapi_userinfo'],
-              'callback' => '/wechat/callback',
-          ],
 
-     'payment' => [
-        'merchant_id'        => '1433547502',
-        'key'                => '9uwgtGl0F7sDxqpX7cNy0pQ7lA5SQVFJ',
-        'notify_url'         => 'http://'.$_SERVER['HTTP_HOST'].'/weixinpayment/callback',       // 
-    ],
     /*
      * OAuth 配置
      *

@@ -16,33 +16,42 @@ Route::get('MP_verify_pmpAsuvps9qrYRnk.txt', function () {
     return "pmpAsuvps9qrYRnk";
 });
 
-Route::get('/login','Mobile\MemberController@toLogin');
-Route::get('/register','Mobile\MemberController@toRegister');
-Route::get('/index','Mobile\IndexController@index');
-/*产品库*/
-Route::get('/project_lists','Mobile\ProjectController@project_lists');
-Route::get('/project_details/{id}/{type?}','Mobile\ProjectController@project_details');
-Route::post('/get_project_list','Mobile\ProjectController@get_project_list');
-Route::post('/get_project_name','Mobile\ProjectController@get_project_name');
-/*资源库*/
-Route::get('/resources_list','Mobile\ResourcesController@resources_list');
-Route::get('/resources_add','Mobile\ResourcesController@resources_add');
-/*在线培训*/
-Route::get('/cources_lists','Mobile\CourcesController@cources_lists');
-/*个人中心*/
-Route::get('/person_center','Mobile\MemberController@person_center');
-Route::any('/user_info','Mobile\MemberController@user_info');
-Route::get('/user_profit','Mobile\MemberController@user_profit');
-Route::any('/project_add/{id?}','Mobile\MemberController@project_add');
-Route::any('/project_list','Mobile\MemberController@project_list');
+Route::any('/wechat', 'WechatController@serve');
+Route::any('/wechatmenu/add', 'WechatMenuController@add');
+Route::any('/wechatmenu/del', 'WechatMenuController@del');
 
-Route::any('/dropload_project/{type?}/{page?}','Mobile\MemberController@dropload_project');
-Route::get('/user_project','Mobile\MemberController@user_project');
-Route::get('/user_resources','Mobile\MemberController@user_resources');
-Route::get('/user_report','Mobile\MemberController@user_report');
-Route::any('/report_add/{id?}/{rid?}','Mobile\MemberController@report_add');
-Route::get('/report_details/{id}','Mobile\MemberController@report_details');
-Route::get('/user_code','Mobile\MemberController@user_code');
+Route::group(['namespace'=>'Mobile'], function () {
+//Route::group(['namespace'=>'Mobile','middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {
+	Route::get('/login','MemberController@toLogin');
+	Route::get('/register','MemberController@toRegister');
+	Route::get('/index','IndexController@index');
+	/*产品库*/
+	Route::get('/project_lists','ProjectController@project_lists');
+	Route::get('/project_details/{id}/{type?}','ProjectController@project_details');
+	Route::post('/get_project_list','ProjectController@get_project_list');
+	Route::post('/get_project_name','ProjectController@get_project_name');
+	/*资源库*/
+	Route::get('/resources_list','ResourcesController@resources_list');
+	Route::get('/resources_add','ResourcesController@resources_add');
+	/*在线培训*/
+	Route::get('/cources_lists','CourcesController@cources_lists');
+	/*个人中心*/
+	Route::get('/person_center','MemberController@person_center');
+	Route::any('/user_info','MemberController@user_info');
+	Route::get('/user_profit','MemberController@user_profit');
+	Route::any('/project_add/{id?}','MemberController@project_add');
+	Route::any('/project_list','MemberController@project_list');
+
+	Route::any('/dropload_project/{type?}/{page?}','MemberController@dropload_project');
+	Route::get('/user_project','MemberController@user_project');
+	Route::get('/user_resources','MemberController@user_resources');
+	Route::get('/user_report','MemberController@user_report');
+	Route::any('/report_add/{id?}/{rid?}','MemberController@report_add');
+	Route::get('/report_details/{id}','MemberController@report_details');
+	Route::get('/user_code','MemberController@user_code');
+});
+
+
 
 
 Route::group(['prefix'=>'admin'],function (){
