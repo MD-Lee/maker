@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
-
+use EasyWeChat\Foundation\Application;
 class MemberController extends Controller{
 
     public function toRegister(){
@@ -27,7 +27,13 @@ class MemberController extends Controller{
     /*name  个人中心*/
     public function person_center(){
 
-        return view('mobile.member.person_center');
+      /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
+        $openId = $user->id;*/
+        $openId = 1;
+        $user_info = Members::where('openid',$openId)->select('headimg','money','id')->first();
+
+        session(['user_id' => $user_info->id]);
+        return view('mobile.member.person_center',['user_info'=>$user_info]);
 
     }
     /*name  资料修改*/
@@ -35,21 +41,31 @@ class MemberController extends Controller{
 
         if ($request->isMethod('post')) {
             $postdata = $request->all();
+            $user_id = $request->user_id;
             unset($postdata['_token']);
+            unset($postdata['user_id']);
             $members = new Members();
-            $members::where('id',1)->update($postdata);
-
+            $members::where('id',$user_id)->update($postdata);
+            return redirect('/person_center');
         }
-      //  $user_info = Members::find(1);
-
-        return view('mobile.member.user_info');
+        /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
+            $openId = $user->id;*/
+        $openId = 1;
+        $user_info = Members::where('openid',$openId)->first();
+        return view('mobile.member.user_info',['user_info'=>$user_info]);
 
     }
     /*name  分润明细*/
     public function user_profit(){
+        $user_id = session('user_id');
+        $user_profit = Projects_report::where('mid',$user_id)->orderBy('updated_at','desc')->paginate(10);
+        foreach ($user_profit as & $v){
+           $project_info = Project::where('id',$v->pid)->select('product_name','product_profit')->first();
+            $v->product_name = $project_info->product_name;
+            $v->product_profit = $project_info->product_profit;
+        }
 
-        return view('mobile.member.user_profit');
-
+        return view('mobile.member.user_profit',['user_profit'=>$user_profit]);
     }
     /*name  项目建立*/
     public function project_list(Request $request ,$page=''){
@@ -194,22 +210,37 @@ class MemberController extends Controller{
     }
     /*name  我的二维码*/
     public function user_code(){
+        /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
+            $openId = $user->id;*/
 
-        return view('mobile.member.user_code');
+        $openId = 1;
+        $user_id = session('user_id')?session('user_id'):Members::where('openid',$openId)->value('id');;//会员ID
+        $app = app('wechat');
+        $qrcode = $app->qrcode;
+        $result = $qrcode->forever($user_id);// 或者 $qrcode->forever("foo");
+        $ticket = $result->ticket; // 或者 $result['ticket']
+        $url = $qrcode->url($ticket);
+        $content = file_get_contents($url); // 得到二进制图片内容
+        if(!file_exists(public_path('code')))
+            mkdir(public_path('code'));
+
+        $img    = public_path('code/'.$user_id.'.jpg');
+        file_put_contents($img, $content); // 写入文件
+        return view('mobile.member.user_code',['img'=>$img]);
 
     }
 
     /*name  下拉项目列表
-       type 1 业务报备 2参与的项目 默认为添加得项目
+       type 1 业务报备 2参与的项目 3 分润明细   默认为添加得项目
        */
     public function dropload_project(Request $request ,$type='',$page=''){
-        $id = 1;//会员ID
+        $id = session('user_id');//会员ID
         $type = $request->type;
         if($type ==1){
-            $Project = Projects_report::where('mid',1)->paginate(10);
+            $Project = Projects_report::where('mid',$id)->paginate(10);
 
         }elseif ($type ==2){
-            $Project = Member_join_project::where('mid',$id)->paginate(1);
+            $Project = Member_join_project::where('mid',$id)->paginate(10);
             foreach ($Project as & $v){
                 $project_info = Project::where('id',$v['pid'])->select('id','pid','product_name','area','member_number')->first();
                 $pnme = Project::find($project_info->pid)->get_project_name()->select('pname')->first();
@@ -221,11 +252,20 @@ class MemberController extends Controller{
                 $v['product_name'] = $project_info->product_name;
             }
 
+        }elseif($type ==3){
+            $Project = Projects_report::where('mid',$id)->orderBy('updated_at','desc')->paginate(10);
+            foreach ($Project as & $v){
+
+                $project_info = Project::where('id',$v->pid)->select('product_name','product_profit')->first();
+                $v->product_name = $project_info->product_name;
+                $v->product_profit = $project_info->product_profit;
+            }
         }else{
             $Project = Project::where('mid',1)->paginate(10);
 
         }
         $list = $Project->toarray();
+
         return response()->json($list['data']);
     }
 }

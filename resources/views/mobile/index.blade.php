@@ -42,28 +42,19 @@
    <div class="product_title">产品信息</div>
    <div class="index_con">
    <table class="report_table">
-
+@foreach($project_info as $v)
        <tr>
-       	<td class="title" colspan="2"><a href="/project_details">新型茶园培养基地项目 </a></td>
+       	<td class="title" colspan="2"><a href="/project_details/{{$v->id}}">{{$v->product_name}} </a></td>
        </tr>
        <tr>
-       	<td>人力资源</td><td>2017-03-28 12:34</td>
+       	<td>{{$v->pname}}</td><td>{{$v->created_at}}</td>
        </tr>
        <tr>
-       	<td>青岛市-李沧区</td><td>已有100人参与</td>
-       </tr>
-       <tr><td class="line" colspan="2"></td></tr>
-
-       <tr>
-       	<td class="title" colspan="2"><a href="/project_details">新型茶园培养基地项目2017 </a></td>
-       </tr>
-       <tr>
-       	<td>人力资源</td><td>2017-03-28 12:34</td>
-       </tr>
-       <tr>
-       	<td>青岛市-李沧区</td><td>已有100人参与</td>
+       	<td>{{$v->area}}</td><td>已有{{$v->member_number}}人参与</td>
        </tr>
        <tr><td class="line" colspan="2"></td></tr>
+@endforeach
+
 
    </table>
    </div>

@@ -2,7 +2,7 @@
 
 @section('title','创客|业务报备')
 @section('content')
-    <meta name="_token" content="{{ csrf_token() }}"/>
+  =
     <div class="weui_panel weui_panel_access">
 
     <table class="report_table" cellpadding="0" cellspacing="0">
@@ -69,13 +69,9 @@
 
                             if(arrLen > 0){
                                 for(var i=0; i<arrLen; i++){
-                                    result+='<a href="/project_details" class="weui_media_box weui_media_appmsg">'
-                                        +'<tr><td colspan="2"><h4 class="weui_media_title">'
-                                        +data[i]['product_name']
-                                        +'</h4></td></tr>'
-                                        +'<tr><td style="text-align: left">人力资源</td><td style="text-align: right">2015-12-01</td></tr>'
-                                        +'<tr> <td style="text-align: left">青岛市-李沧区</td><td style="text-align: right">已有100人参与</td></tr>'
-                                        +'</a>';
+                                    result+='<tr><td class="title" colspan="2"><a href="/report_details/'+data[i][id]+'">'+data[i]['customer_name']+
+                                        '</a></td></tr><tr><td style="width:50%">'+data[i]['product_name']+'</td><td style="width:50%">'+data[i]['pname']+
+                                        '</td></tr><tr><td>状态：'+data[i]['status']+'</td><td>'+data[i]['created_at']+'</td> </tr><tr><td class="line" colspan="2"></td></tr>';
                                 }
                                 // 如果没有数据
                             }else{
@@ -87,7 +83,7 @@
 
                             // 为了测试，延迟1秒加载
                             setTimeout(function(){
-                                $('.weui-table').append(result);
+                                $('.report_table').append(result);
                                 var lazyloadImg = new LazyloadImg({
                                     el: '.weui-updown [data-img]', //匹配元素
                                     top: 50, //元素在顶部伸出长度触发加载机制

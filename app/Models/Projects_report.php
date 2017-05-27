@@ -8,8 +8,8 @@ class Projects_report extends Model {
         'customer_area','customer_address','customer_require','status',
         'amount','agreement_doc'
     ];
-    public function get_project_info(){
-        return $this->hasOne('App\Models\Perject','id','pid');
+    public function get_project_name(){
+        return $this->hasOne('App\Models\Project','id','pid');
     }
 }
 

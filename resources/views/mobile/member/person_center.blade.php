@@ -4,12 +4,12 @@
 @section('content')
     <div class="top_head">
     	<div class="top_person">
-        	<img src="images/001-1.jpg"/>
+        	<img src="{{$user_info->headimg}}"/>
             <p>王小明</p>
         </div>
         <ul class="remain">
             <li>
-            	<div class="fl">余额：<span class="color_org">9999.99</span></div>
+            	<div class="fl">余额：<span class="color_org">{{$user_info->money}}</span></div>
                 <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_primary fr">提现</a>
              </li>
         </ul>

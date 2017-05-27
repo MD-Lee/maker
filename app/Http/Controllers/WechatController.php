@@ -21,9 +21,15 @@ class WechatController extends Controller
        // Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
 
         $wechat = app('wechat');
+
+
         $wechat->server->setMessageHandler(function($message){
-		$openid = $message->FromUserName;	
-		
+		$openid = $message->FromUserName;
+        $wechat = app('wechat');
+        $userService = $wechat->user;
+        $user = $userService->get($openid);
+
+        $imgurl = $user->headimgurl;
 		$wx_user = Members::where('openid',$openid)->value('id');
         $add = new Members();	
 		
@@ -32,6 +38,7 @@ class WechatController extends Controller
 
             if(empty($wx_user)){
                 $add->openid = $openid;
+                $add->headimg = $imgurl;
                 $result = $add->save();
                 if($result){
 					Log::info('===='.$result);
@@ -48,6 +55,7 @@ class WechatController extends Controller
                         if($pid){
                             $add->pid = $pid;
                         }
+                        $add->headimg = $imgurl;
                         $add->openid = $openid;
                         $result=$add->save();
                         if($result){
