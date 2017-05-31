@@ -29,9 +29,9 @@ class MemberController extends Controller{
 
       /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
         $openId = $user->id;*/
-        $openId = 1;
+        $openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
         $user_info = Members::where('openid',$openId)->select('headimg','money','id')->first();
-
+		
         session(['user_id' => $user_info->id]);
         return view('mobile.member.person_center',['user_info'=>$user_info]);
 
@@ -50,7 +50,7 @@ class MemberController extends Controller{
         }
         /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
             $openId = $user->id;*/
-        $openId = 1;
+       	$openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
         $user_info = Members::where('openid',$openId)->first();
         return view('mobile.member.user_info',['user_info'=>$user_info]);
 
@@ -213,20 +213,29 @@ class MemberController extends Controller{
         /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
             $openId = $user->id;*/
 
-        $openId = 1;
+		$openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
         $user_id = session('user_id')?session('user_id'):Members::where('openid',$openId)->value('id');;//会员ID
-        $app = app('wechat');
-        $qrcode = $app->qrcode;
-        $result = $qrcode->forever($user_id);// 或者 $qrcode->forever("foo");
-        $ticket = $result->ticket; // 或者 $result['ticket']
-        $url = $qrcode->url($ticket);
-        $content = file_get_contents($url); // 得到二进制图片内容
-        if(!file_exists(public_path('code')))
-            mkdir(public_path('code'));
+		$code = Members::where('openid',$openId)->value('code');;//会员code
+		if(empty($code)){
+			$app = app('wechat');
+			$qrcode = $app->qrcode;
+			$result = $qrcode->forever($user_id);// 或者 $qrcode->forever("foo");
+			$ticket = $result->ticket; // 或者 $result['ticket']
+			
+			$url = $qrcode->url($ticket);
+			$content = file_get_contents($url); // 得到二进制图片内容
+			if(!file_exists(public_path('code')))
+				mkdir(public_path('code'));
 
-        $img    = public_path('code/'.$user_id.'.jpg');
-        file_put_contents($img, $content); // 写入文件
-        return view('mobile.member.user_code',['img'=>$img]);
+			$img    = public_path('code/'.$user_id.'.jpg');
+			$code =  '/code/'.$user_id.'.jpg' ;
+			file_put_contents($img, $content); // 写入文件
+			$data['code'] = $code;
+			$data['code_number'] =  $user_id   ;
+			Members::where('openid',$openId)->update($data);
+		}
+        
+        return view('mobile.member.user_code',['img'=>$code]);
 
     }
 
