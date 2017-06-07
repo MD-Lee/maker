@@ -24,6 +24,7 @@ Route::group(['namespace'=>'Mobile'], function () {
 //Route::group(['namespace'=>'Mobile','middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {
 	Route::get('/login','MemberController@toLogin');
 	Route::get('/register','MemberController@toRegister');
+	Route::any('/message_verify','MemberController@message_verify');
 	Route::get('/index','IndexController@index');
 	/*产品库*/
 	Route::get('/project_lists','ProjectController@project_lists');

@@ -12,9 +12,13 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
 use EasyWeChat\Foundation\Application;
+use  App\Common;
 class MemberController extends Controller{
 
     public function toRegister(){
+        /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
+                $openId = $user->id;*/
+        $openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
 
         return view('mobile.register');
 
@@ -31,7 +35,6 @@ class MemberController extends Controller{
         $openId = $user->id;*/
         $openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
         $user_info = Members::where('openid',$openId)->select('headimg','money','id')->first();
-		
         session(['user_id' => $user_info->id]);
         return view('mobile.member.person_center',['user_info'=>$user_info]);
 
@@ -276,5 +279,30 @@ class MemberController extends Controller{
         $list = $Project->toarray();
 
         return response()->json($list['data']);
+    }
+    /*验证码*/
+    public  function message_verify(Request $request){
+        $mobile = $request->phone;
+        $has_id = Members::where('mobile',$mobile)->value('id');
+        if(empty($has_id)){
+            $error['error'] = 3;//该手机号已注册
+        }else{
+            $verify = rand(100000,999999);   //把随机验证码提交到session里面
+            //$_SESSION['verify'] = $verify;
+            /*$content="【创客】您的验证码是{$verify}";//要发送的短信内容
+            $userid = 3117;
+            $account = "jxgk";
+            $password = "jxgk0532";
+            $url = "http://dx.qxtsms.cn/sms.aspx?action=send&userid=".$userid."&account=".$account."&password=".$password."&mobile=".$mobile."&content=".$content."&sendTime=&checkcontent=0";
+            $restult = Common::https_request($url,1);
+            $xml = simplexml_load_string($restult);
+            $data = json_decode(json_encode($xml),TRUE);*/
+            $data = array();
+            $data['returnstatus'] = 'Success';
+            $result['error'] = $data['returnstatus']=='Success'?1:2;
+            $result['verify'] = $verify;
+        }
+        return response()->json($result);
+
     }
 }

@@ -1,294 +1,200 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>会员管理</title>
+@extends('mobile.master')
 
-    <!-- header binge -->
-    <include file="Public/header" />
-    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="{$Think.config.URL}js/jquery.cookie.js"></script>
-    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <!-- header end -->
-    <script type="text/javascript" src="{$Think.config.URL}js/jquery.form.min.js"></script>
-    <script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+@section('title','注册')
+@section('content')
+    <form id="form" action="" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input"  type="text" required  maxlength="22" placeholder="输入你姓名" emptyTips="请输入姓名" notMatchTips="请输入正确的姓名"  name="uname" placeholder="请输入姓名"/>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">身份证</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id" name="idcard" placeholder="请输入身份证号" required pattern="(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)" emptyTips="请输入身份证号" notMatchTips="请输入正确的身份证号"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">上传身份证</label></div>
+            <div class="weui_uploader_bd">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input" id="file1" name="front" accept="image/*" multiple="" type="file">
+                </div>
+                <img src="" id="img1" >
+            </div>
+            <div class="weui_uploader_bd">
+                <div class="weui_uploader_input_wrp">
+                    <input class="weui_uploader_input"  id="file2" name="back" accept="image/*" multiple="" type="file">
+                </div>
+                <img src="" id="img2" >
+            </div>
+        </div>
 
 
-            jQuery('.taglist .close').click(function(){
-                jQuery(this).parent().remove();
+        <div class="weui_cell weui_cell_vcode">
+            <div class="weui_cell_hd">
+                <label class="weui_label">手机号</label>
+            </div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" id="mobile" name="mobile" type="tel"  required pattern="[0-9]{11}" maxlength="11" placeholder="输入你现在的手机号" emptyTips="请输入手机号" notMatchTips="请输入正确的手机号">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <a href="javascript:;" class="weui-vcode-btn" id="sendcode">获取验证码</a>
+            </div>
+        </div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id" id="validate_code" name="validate_code" placeholder="请输入验证码" required pattern="[0-9]{6}" maxlength="6" emptyTips="请输入验证码" notMatchTips="请输入正确的验证码"/>
+            </div>
+        </div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd">
+                <input class="weui_input" type="id" id="password" name="password" placeholder="请输入密码" required emptyTips="请输入密码"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="weui_btn-area">
+        <input type="hidden" id="verify">
+        <a class="weui_btn weui_btn_primary" href="javascript:" id="formSubmitBtn">注册</a>
+
+    </div>
+    </form>
+    <a href="/login" class="bk_bottom_tips bk_important">已有帐号? 去登录</a>
+@endsection
+@section('my-js')
+    <script src="/js/zepto.min.js"></script>
+    <script>
+        $("#file1").change(function(){
+            var lee=this.files[0].name;
+            if(!/.(gif|jpg|jpeg|png|GIF|JPG|bmp)$/.test(lee)){
+
+                alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
                 return false;
+
+            }
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+               // $("file1").css("backgroundImage","url("+objUrl+")");
+
+                $("#img1").attr("src", objUrl) ;
+            }
+        }) ;
+        $("#file2").change(function(){
+            var lees=this.files[0].name;
+            if(!/.(gif|jpg|jpeg|png|GIF|JPG|bmp)$/.test(lees)){
+
+                alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+                return false;
+
+            }
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+                // $("file1").css("backgroundImage","url("+objUrl+")");
+                $("#img2").attr("src", objUrl) ;
+            }
+        }) ;
+        //建立一個可存取到該file的url
+        function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+            }
+            return url ;
+        };
+
+
+        var $form = $("#form");
+
+        $("#formSubmitBtn").on("click", function(){
+            $form.validate(function(error){
+                if(error){
+
+                }else{
+                    var validate_code = $("#validate_code").val();
+                    var verify = $("#verify").val();
+
+                    var img1 = $("#file1").val();
+                    var img2 = $("#file2").val();
+                    if(validate_code != verify){
+                        alert("验证码错误");
+                        return false;
+                    }
+                    if(img1 =='' || img2 =='' ){
+                        alert("请选择上传图片");
+                        return false;
+                    }
+
+                    $form.submit();
+                    //$.toptips('验证通过提交','ok');
+                }
             });
 
         });
     </script>
+    <script>
+        //到计时控件
+        var time = 60;
+        var sendcode = document.getElementById("sendcode");
+        $(document).ready(function(){
+            $("#sendcode").click(function(){
+                if($("#mobile").val() == ""){
+                    alert('请输入您的手机号');
+                }else{
+                    var phone = $("#mobile").val();
+                    var $url = "{{url('message_verify')}}";
+                    $.ajax({
+                        type:"POST",
+                        url:$url,
+                        data:{'phone':phone},
+                        datatype:'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                        },
+                        success:function(data){
+                            if(data.error == 1){
+                                alert("短信发送成功");
+                                $('#verify').val(data.verify);
+                                function timedown() {
+                                    if (time == 0) {
+                                        sendcode.removeAttribute('disabled');
+                                        $("#sendcode").text("获取验证码");
+                                        time = 60;
+                                        clearTimeout(clicktime);
+                                    }else{
+                                        $("#sendcode").text("重新发送(" + time + ")");
+                                        sendcode.setAttribute("disabled", true);
+                                        time--;
+                                        clicktime = setTimeout(timedown, 1000);
+                                    }
+                                }
+                                timedown();
+                            }else if(data.error == 2){
+                                alert('短信发送失败');
+                            }else{
+                                alert('该手机号已注册');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        sendcode.removeAttribute('disabled');
 
-</head>
-
-
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-</head>
-<body>
-
-<!-- header binge -->
-<include file="Public/head" />
-
-<!-- header end -->
-
-<div class="rightpanel">
-    <!-- head binge -->
-
-    <include file="Public/nav" name='会员管理'/>
-
-    <!-- head end -->
-
-    <div class="maincontent">
-        <div class="maincontentinner">
-            <div class="row-fluid">
-                <div>
-                    <div class="widgetbox personal-information">
-                        <h4 class="widgettitle">会员管理</h4>
-                        <div class="widgetcontent" id="user" method="get">
-                            <form id="form" action="{:U('Admin/s_manage')}">
-                                <input type="hidden" value="{$type}" id="type">
-                                <select name="type" style="width: 80px;" id="select1">
-                                    <option value="1">手机号</option>
-                                    <option value="2">姓名</option>
-                                </select>
-                                <input type="text" class="input-xlarge" name="content" placeholder="请输入要搜索的手机号码或姓名" style="width:150px;" value="{$content}">
-                                <input type="hidden" value="{$is_adopt}" id="is_adopt">
-                                <select name="is_adopt" style="width:100px;" id="select2">
-                                    <option value="">选择状态</option>
-                                    <option value="-1">未完善个人资料</option>
-                                    <option value="0">申请中</option>
-                                    <option value="1">通过审核</option>
-                                    <option value="2">未通过</option>
-                                    <option value="3">已取消申请</option>
-                                </select>
-                                <!-- <if condition="$limits eq '1'">
-                                    <input type="hidden" value="{$loan_people}" id="loan_people">
-                                    <select name="loan_people" style="width:100px;" id="select3">
-                                        <option value="">选择审核人员</option>
-                                            <volist name="info" id="vo">
-                                                <option value="{$vo.userid}">{$vo.userid}</option>
-                                            </volist>
-                                    </select>
-                                </if> -->
-                                <span>日期：<input type="text" id="datepicker1" style="width:80px" name="apply_time1" value="{$apply_time1}">至<input type="text" id="datepicker2" style="width:80px" name="apply_time2" value="{$apply_time2}"></span>
-                                <input type="submit" class="btn btn-primary" value="搜索" name="submit">
-                            </form>
-                            <div  id="tab1">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th width="300px;">昵称</th>
-                                        <th width="100px;">姓名</th>
-                                        <th width="200px;">手机</th>
-                                        <th width="300px;">注册时间</th>
-                                        <!-- <th width="200px;">状态</th> -->
-                                        <th width="200px;">操作</th>
-                                        <!-- <th width="100px;">审核人员</th>
-                                        <th width="100px;">推荐人</th> -->
-                                    </tr>
-                                    <volist name="list" id="vo">
-                                        <tr id="s_manage{$vo.id}">
-                                            <td>{$vo.uname}</td>
-                                            <td>{$vo.name}</td>
-                                            <td><a href="{:U('Admin/user_details',array('id'=>$vo[id]))}">{$vo.phone}</a></td>
-                                            <td>{$vo.time}</td>
-                                            <!-- <td>
-                                                <if condition="$vo.status eq -1">
-                                                       未完善个人资料
-                                                   <elseif condition="$vo.status eq 0"/>
-                                                       提交资料,审核中
-                                                   <elseif condition="$vo.status eq 1"/>
-                                                       通过审核
-                                                   <elseif condition="$vo.status eq 2"/>
-                                                       未通过
-                                                <elseif condition="$vo.status eq 3"/>
-                                                       重新提交资料,审核中
-                                                   </if>
-                                            </td> -->
-                                            <!-- <td>{$vo.loan_people}</td>
-                                            <td>{$vo.recommend}</td> -->
-                                            <td>	<a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" onclick="loan({$vo.id},1)" id="{$vo.id}">审核</a>
-                                            </td>
-                                        </tr>
-                                    </volist>
-                                </table>
-                                {$page}
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 id="myModalLabel">确定收款</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>是否已经确定还款</p>
-                        </div>
-                        <div id="showtype" style="display:none">
-                            信用度<input type="text" value="" id="credit"/>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" value="" id="pid">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-                            <button class="btn btn-primary" onclick="is_Loan()">确定收款</button>
-                            <button class="btn btn-primary" onclick="no_Loan()">未收款</button>
-                        </div>
-                    </div>
-                </div><!--row-fluid-->
-
-
-                <!-- footer binge -->
-                <include file="Public/footer" />
-
-                <!-- footer end -->
-
-
-
-            </div><!--maincontentinner-->
-        </div><!--maincontent-->
-
-    </div><!--rightpanel-->
-
-</div><!--mainwrapper-->
-
-</body>
-
-<script>
-    function loan(id,huankuan_type){
-        var id = id;
-        var type = huankuan_type;
-        $('#pid').val(id);
-
-        if(type == 1){
-            $("#showtype").show();
-        }
-    }
-    var type = $('#type').val();
-    $('#select1').find("option[value='"+type+"']").attr("selected",true);
-    var is_adopt = $('#is_adopt').val();
-    $('#select2').find("option[value='"+is_adopt+"']").attr("selected",true);
-    var loan_people = $('#loan_people').val();
-    $('#select3').find("option[value='"+loan_people+"']").attr("selected",true);
-
-    //日期选择器
-    $(function() {
-        $( "#datepicker1" ).datepicker({ dateFormat:"yy-mm-dd" });
-        $( "#datepicker2" ).datepicker({ dateFormat:"yy-mm-dd" });
-    });
-    //搜索手机用户
-    function user_search(){
-        $('#table #tr').siblings('tr').remove();
-        $('#form').ajaxSubmit({
-            type:"POST",
-            url:"{:U('Admin/s_manage_search')}",
-            datatype:"json",
-            success:function(data){
-                $.each(data,function(){
-                    if(this.is_adopt == -1){
-                        $('#table').append("<tr>"
-                            +"<td>"+this.uname+"</td>"
-                            +"<td>"+this.name+"</td>"
-                            +"<td><a href='/index.php/Admin/user_details?phone="+this.phone+"'>"+this.phone+"</a></td>"
-                            +"<td>"+this.time+"</td>"
-                            +"<td>未完善个人资料</td>"
-                            +"<if condition='"+this.loan_people+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.loan_people+"</td>"
-                            +"</if>"
-                            +"<if condition='"+this.recommend+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.recommend+"</td>"
-                            +"</if>"
-                            +"</tr>");
-                    }else if(this.is_adopt == 0){
-                        $('#table').append("<tr>"
-                            +"<td>"+this.uname+"</td>"
-                            +"<td>"+this.name+"</td>"
-                            +"<td><a href='/index.php/Admin/user_details?phone="+this.phone+"'>"+this.phone+"</a></td>"
-                            +"<td>"+this.time+"</td>"
-                            +"<td><span style='color:red'>申请中</span></td>"
-                            +"<if condition='"+this.loan_people+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.loan_people+"</td>"
-                            +"</if>"
-                            +"<if condition='"+this.recommend+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.recommend+"</td>"
-                            +"</if>"
-                            +"</tr>");
-                    }else if(this.is_adopt == 1){
-                        $('#table').append("<tr>"
-                            +"<td>"+this.uname+"</td>"
-                            +"<td>"+this.name+"</td>"
-                            +"<td><a href='/index.php/Admin/user_details?phone="+this.phone+"'>"+this.phone+"</a></td>"
-                            +"<td>"+this.time+"</td>"
-                            +"<td>通过审核</td>"
-                            +"<if condition='"+this.loan_people+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.loan_people+"</td>"
-                            +"</if>"
-                            +"<if condition='"+this.recommend+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.recommend+"</td>"
-                            +"</if>"
-                            +"</tr>");
-                    }else if(this.is_adopt == 2){
-                        $('#table').append("<tr>"
-                            +"<td>"+this.uname+"</td>"
-                            +"<td>"+this.name+"</td>"
-                            +"<td><a href='/index.php/Admin/user_details?phone="+this.phone+"'>"+this.phone+"</a></td>"
-                            +"<td>"+this.time+"</td>"
-                            +"<td>未通过审核</td>"
-                            +"<if condition='"+this.loan_people+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.loan_people+"</td>"
-                            +"</if>"
-                            +"<if condition='"+this.recommend+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.recommend+"</td>"
-                            +"</if>"
-                            +"</tr>");
-                    }else if(this.is_adopt == 3){
-                        $('#table').append("<tr>"
-                            +"<td>"+this.uname+"</td>"
-                            +"<td>"+this.name+"</td>"
-                            +"<td><a href='/index.php/Admin/user_details?phone="+this.phone+"'>"+this.phone+"</a></td>"
-                            +"<td>"+this.time+"</td>"
-                            +"<td>已取消申请</td>"
-                            +"<if condition='"+this.loan_people+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.loan_people+"</td>"
-                            +"</if>"
-                            +"<if condition='"+this.recommend+" eq null'>"
-                            +"<td></td>"
-                            +"<else/>"
-                            +"<td>"+this.recommend+"</td>"
-                            +"</if>"
-                            +"</tr>");
-                    }
-                });
-                $('#tab1').css('display','none');
-                $('#tab2').css('display','block');
-            }
-        })
-    }
-</script>
-</html>
+    </script>
+@endsection
