@@ -4,12 +4,16 @@
 @section('content')
     <meta name="_token" content="{{ csrf_token() }}"/>
     <div class="weui_panel weui_panel_access">
-    <table class="weui-table weui-border-tb">
+    <table class="report_table" cellpadding="0" cellspacing="0">
         @foreach($user_join_projects as $v)
-        <tr ><td colspan="2"style="text-align: left">{{$v->product_name}}</td></tr>
-        <tr><td>{{$v->pname}}</td><td>{{$v->created_at}}</td></tr>
+        <tr><td class="title" colspan="2">{{$v->product_name}}</td></tr>
+        <tr>
+        	<td style="width:50%">{{$v->pname}}</td>
+            <td style="width:50%">{{$v->created_at}}</td>
+        </tr>
         <tr><td>{{$v->area}}</td><td>已有{{$v->number}}人参与</td></tr>
         <tr><td colspan="2"><a href="report_add/{{$v->npid}}" class="weui_btn weui_btn_primary">新增报备</a></td></tr>
+        <tr><td class="line" colspan="2"></td></tr>
             @endforeach
     </table>
     </div>

@@ -7,11 +7,12 @@ use App\Models\Project;
 use App\Models\Projects_follow;
 use App\Models\Projects_name;
 use App\Models\Projects_report;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
 use EasyWeChat\Foundation\Application;
+use App\Http\Request;
 use  App\Common;
 class MemberController extends Controller{
 
@@ -19,12 +20,14 @@ class MemberController extends Controller{
         /*  $user = session('wechat.oauth_user'); // 拿到授权用户资料
                 $openId = $user->id;*/
         $openId = 'oRWuqv_zJy6ptMAcxfv1sxz-dxWc';
-
         return view('mobile.register');
 
     }
-    public function toLogin(){
-
+    public function toLogin(Request $request){
+		if($request->all())
+		{
+			var_dump($request->all());exit;
+		}
         return view('mobile.login');
 
     }

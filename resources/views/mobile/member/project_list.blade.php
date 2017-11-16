@@ -4,11 +4,23 @@
 @section('content')
     <meta name="_token" content="{{ csrf_token() }}"/>
     <div class="weui_panel weui_panel_access">
-    <table class="weui-table weui-border-tb">
+    <table class="report_table" cellpadding="0" cellspacing="0">
 @foreach($project_list as $p)
-        <tr ><td colspan="2"style="text-align: left">  <a href="/project_details/{{$p->id}}/1">{{$p->product_name}} </a></td></tr>
-        <tr><td>{{$p->pname}}</td><td>{{$p->created_at}}</td></tr>
-        <tr><td colspan="2">状态：@if($p->status == -1)审核中@elseif($p->status == 1)审核通过@else 审核不通过@endif</td></tr>
+        <tr>
+        	<td class="title" colspan="2"><a href="/project_details/{{$p->id}}/1">{{$p->product_name}} </a></td>
+        </tr>
+        <tr>
+        	<td style="width:50%">{{$p->pname}}</td>
+            <td style="width:50%">{{$p->created_at}}</td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+            	状态：@if($p->status == -1)<span class="c_green">审核中</span>
+                @elseif($p->status == 1)<span class="c_green">审核通过</span>
+                @else<span class="c_red">审核不通过</span>@endif
+            </td>
+        </tr>
+        <tr><td class="line" colspan="2"></td></tr>
 @endforeach
 
     </table>
@@ -108,12 +120,6 @@
                     });
                 }
             });
-
-
-
-
-
-
         });
     </script>
 @endsection

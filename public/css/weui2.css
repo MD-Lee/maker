@@ -2094,12 +2094,13 @@ weui-box*/
     border-left: 1px solid #e5e5e5;
     color: #3cc51f;
     display: inline-block;
-    font-size: 17px;
+    font-size: 14px;
     height: 44px;
     line-height: 44px;
     margin-left: 5px;
-    padding: 0 0.6em 0 0.7em;
+    padding: 0 2px 0 2px;
     vertical-align: middle;
+	width:75px;
 }
 
 .weui-agree {
@@ -2848,6 +2849,7 @@ font-weight:700;
 .report_table tr td.title{ padding:4px 6px; font-size:16px;}
 .report_table tr td.title a{color:#333;}
 .report_table tr td.line{ height:1px; background:#f6f6f6; padding:0}
+.report_table tr td h4 a{ font-size:16px;}
 
 .index_table{ width:100%; overflow:hidden; background:#fff; border-collapse:none;}
 .index_table tr td{ padding:10px; text-align:center; border-right:1px solid #f2f2f2; border-bottom:1px solid #f2f2f2;}
@@ -2855,3 +2857,5 @@ font-weight:700;
 .blank{ background:#eee; height:10px;}
 .product_title{ background:#fff; border-bottom:1px solid #f2f2f2; height:50px; line-height:50px; text-indent:10px;}
 .index_con{ padding:0 10px;background:#fff;}
+.c_green{ color:green;}
+.c_red{ color:red;}

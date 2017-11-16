@@ -7,21 +7,19 @@
 
             <div class="weui_media_bd">
 
-                <table style="width: 100%" id="rdata">
-
-                    <a href="/project_details" class="weui_media_box weui_media_appmsg">
-                        <tr>
-                            <td colspan="2"><h4 class="weui_media_title">新型茶园培养基地项目</h4></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">人力资源</td>
-                            <td style="text-align: right">2015-12-01</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left">青岛市-李沧区</td>
-                            <td style="text-align: right">已有100人参与</td>
-                        </tr>
-                    </a>
+                <table class="report_table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="2"><h4 class="weui_media_title"><a href="/project_details">新型茶园培养基地项目</a></h4></td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%">人力资源</td>
+                        <td style="width:50%">2015-12-01</td>
+                    </tr>
+                    <tr>
+                        <td>青岛市-李沧区</td>
+                        <td>已有100人参与</td>
+                    </tr>
+                    <tr><td class="line" colspan="2"></td></tr>
                 </table>
 
 

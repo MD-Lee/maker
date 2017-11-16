@@ -15,7 +15,9 @@
 Route::get('MP_verify_pmpAsuvps9qrYRnk.txt', function () {
     return "pmpAsuvps9qrYRnk";
 });
-
+Route::get('/',function(){
+   return redirect('/admin/login');
+});
 Route::any('/wechat', 'WechatController@serve');
 Route::any('/wechatmenu/add', 'WechatMenuController@add');
 Route::any('/wechatmenu/del', 'WechatMenuController@del');

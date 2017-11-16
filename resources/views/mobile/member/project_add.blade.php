@@ -14,23 +14,29 @@
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label for="" class="weui_label">项目名称:</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="text" @if($id) value="{{$project->pid}}" @endif id='d2'/>
+                	<select class="weui_select2">
+                    	<option>人力资源</option>
+                    	<option>教育</option>
+                    	<option>互联网</option>
+                    </select>
+                    <a class="creat_project" href="javascript:void();" onclick="showAll('.add_pro')">创建项目</a>
+                    <!--<input class="weui_input" type="text" @if($id) value="{{$project->pid}}" @endif id='d2'/>-->
                 </div>
             </div>
+            <div style="height:1px; background:#ececec; margin-left:15px;"></div>
+            
             <div class="weui_cells_title">产品利润描述：</div>
             <div class="weui_cell">
 
                 <div class="weui_cell_bd weui_cell_primary">
-                    <textarea id="profit_description"  class="weui_textarea" placeholder="产品利润描述" rows="3" name="profit_description" >@if($id){{$project->profit_description}}@endif </textarea>
-                    <div class="weui_textarea_counter"><span id="count">0</span>/<span id="count_max">40</span></div>
+                    <textarea id="profit_description" class="weui_textarea" placeholder="产品利润描述" name="profit_description" rows="3">@if($id){{$project->profit_description}}@endif</textarea>
                 </div>
             </div>
             <div class="weui_cells_title">产品内容：</div>
             <div class="weui_cell">
 
                 <div class="weui_cell_bd weui_cell_primary">
-                    <textarea id="content" class="weui_textarea" placeholder="产品内容" name="content" rows="3">@if($id){{$project->content}}@endif </textarea>
-                    <div class="weui_textarea_counter"><span id="count">0</span>/<span id="count_max">40</span></div>
+                    <textarea id="content" class="weui_textarea" placeholder="产品内容" name="content" rows="3">@if($id){{$project->content}}@endif</textarea>
                 </div>
             </div>
             <div class="weui_cells_title">目标用户：</div>
@@ -38,15 +44,12 @@
 
                 <div class="weui_cell_bd weui_cell_primary">
                     <textarea id="textarea" class="weui_textarea" placeholder="目标用户"name="customer" rows="3">@if($id){{$project->customer}}@endif </textarea>
-                    <div class="weui_textarea_counter"><span id="count">0</span>/<span id="count_max">40</span></div>
                 </div>
             </div>
             <div class="weui_cells_title">解决了哪些根本性问题：</div>
             <div class="weui_cell">
-
                 <div class="weui_cell_bd weui_cell_primary">
                     <textarea id="textarea" class="weui_textarea" placeholder="解决了哪些根本性问题" name="problems" rows="3">@if($id) {{$project->problems}}@endif</textarea>
-                    <div class="weui_textarea_counter"><span id="count">0</span>/<span id="count_max">20</span></div>
                 </div>
             </div>
             <div class="weui_cells_title">盈利点在哪里：</div>
@@ -54,7 +57,6 @@
 
                 <div class="weui_cell_bd weui_cell_primary">
                     <textarea id="textarea" class="weui_textarea" placeholder="盈利点在哪里" name="profit_point" rows="3">@if($id) {{$project->profit_point}}@endif</textarea>
-                    <div class="weui_textarea_counter"><span id="count">0</span>/<span id="count_max">20</span></div>
                 </div>
             </div>
             <div class="weui_cell">
@@ -156,8 +158,9 @@
             $("#ssx").cityPicker({
                 title: "选择省市县"
             });
-            var max = $('#count_max').text();
-            $('#textarea').on('input', function(){
+			
+            /*var max = $('#count_max').text();
+            $('.weui_textarea').on('input', function(){
                 var text = $(this).val();
                 var len = text.length;
                 $('#count').text(len);
@@ -167,7 +170,7 @@
                 else{
                     $(this).closest('.weui_cell').removeClass('weui_cell_warn');
                 }
-            });
+            });*/
 
         });
         var $form = $("#form");
@@ -183,4 +186,46 @@
 
         });
     </script>
+    <script>
+	$(function(){
+		$('.close_R').click(function () {
+			$(".add_pro").hide();
+			$('.mask').hide();
+		});
+	});
+	
+	function showMask(){  
+		$("#mask").css("height",$(document).height());  
+		$("#mask").css("width",$(document).width());  
+		$("#mask").show();  
+	}  
+	//让指定的DIV始终显示在屏幕正中间  
+	function letDivCenter(divName){   
+		var top = ($(window).innerHeight() - $(divName).height())/2;   
+		var left = ($(window).width() - $(divName).width())/2;   
+		var scrollTop = $(document).scrollTop();   
+		var scrollLeft = $(document).scrollLeft();   
+		$(divName).css( {  left : left ,top:top} ).show();  
+	}
+	
+	function showAll(divName,id){  
+		showMask(); 
+		letDivCenter(divName);  
+	}
+		
+	</script>
+    
 @endsection
+
+<!--弹窗-->
+<div class="mask" id="mask"></div>
+<div class="add_pro">
+	<a class="close_R" href="javascript:void();">关闭</a>
+    <div class="add_pro_tle">
+        <input type="text" placeholder="请输入项目名称"/>
+    </div>
+    <div class="add_pro_btn">
+        <a class="" href="javascript:void()">提交</a>
+    </div>
+
+</div>
