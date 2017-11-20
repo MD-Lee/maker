@@ -7,12 +7,12 @@ use App\Models\Project;
 use App\Models\Projects_follow;
 use App\Models\Projects_name;
 use App\Models\Projects_report;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
 use EasyWeChat\Foundation\Application;
-use App\Http\Request;
+//use App\Http\Request;
 use  App\Common;
 class MemberController extends Controller{
 
@@ -24,9 +24,32 @@ class MemberController extends Controller{
 
     }
     public function toLogin(Request $request){
-		if($request->all())
+		if(!isset($_SESSION['user_id']))
 		{
-			var_dump($request->all());exit;
+			if($request->isMethod('post'))
+			{
+				if(empty($request->username) || empty($request->password))
+				{
+					echo '<script>alert("用户名或者密码不能为空！");window.location.href="/login";</script>';
+				}
+				$data = DB::table('members')->where('uname',$request->username)->where('password',md5($request->password))->first();
+				if($data)
+				{
+					echo '<script>alert("登录成功");window.location.href="/person_center";</script>';
+					$_SESSION['user_id']=$data['id'];
+					$_SESSION['username']=$data['uname'];
+				}
+				else
+				{
+					echo '<script>alert("用户名或者密码不对！");window.location.href="/login";</script>';
+				}
+			}
+		}
+		else
+		{
+			$siteurl = "http://maker.9xgk.com";
+			$home_url = $siteurl.'/person_center';
+            header('Location: '.$home_url);
 		}
         return view('mobile.login');
 

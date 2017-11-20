@@ -24,7 +24,7 @@ Route::any('/wechatmenu/del', 'WechatMenuController@del');
 
 Route::group(['namespace'=>'Mobile'], function () {
 //Route::group(['namespace'=>'Mobile','middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {
-	Route::get('/login','MemberController@toLogin');
+	Route::any('/login','MemberController@toLogin');
 	Route::get('/register','MemberController@toRegister');
 	Route::any('/message_verify','MemberController@message_verify');
 	Route::get('/index','IndexController@index');
@@ -59,7 +59,7 @@ Route::group(['namespace'=>'Mobile'], function () {
 
 Route::group(['prefix'=>'admin'],function (){
 //登录注册
-Route::get('login','Admin\IndexController@login');
+Route::any('login','Admin\IndexController@login');
 Route::any('index','Admin\IndexController@index');
 
 //项目建立

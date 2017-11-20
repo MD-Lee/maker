@@ -1,46 +1,38 @@
-@extends('admin.master')
+@extends('mobile.master')
+
 @section('title','登录')
 @section('content')
-    <input type="hidden" id="TenantId" name="TenantId" value="" />
-    <div class="header"></div>
-    <div class="loginWraper">
-        <div id="loginform" class="loginBox">
-            <form class="form form-horizontal" action="/admin/index" method="post">
-                {{ csrf_field() }}
-                <div class="row cl">
-                    <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-                    <div class="formControls col-xs-8">
-                        <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
-                    </div>
-                </div>
-                <div class="row cl">
-                    <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-                    <div class="formControls col-xs-8">
-                        <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
-                    </div>
-                </div>
+<form id="form" action="" name="myForm" method="post" >
+<input type="hidden" name="_token" value="{{csrf_token()}}">
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
 
-                <div class="row cl">
-                    <div class="formControls col-xs-8 col-xs-offset-3">
-                        <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-                        <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-                    </div>
-                </div>
-            </form>
+            <div class="weui_cell_hd"><label class="weui_label">用户名</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text"  id="username" name="username" placeholder="请输入姓名"/>
+            </div>
+        </div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="password"  id ="password" name="password" />
+            </div>
         </div>
     </div>
-    <div class="footer">Copyright 青島九星高科 by </div>
-    <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/admin/js/H-ui.min.js"></script>
-    <!--此乃百度统计代码，请自行删除-->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-    <!--/此乃百度统计代码，请自行删除
+    <div class="page_bd page_bd_spacing">
+        <div class="button_sp_area">
+            <!--<a href="/login" class="weui_btn weui_btn_plain_primary" id="formSubmitBtn">登录</a> -->
+			
+			<input type="submit" class="weui_btn weui_btn_plain_primary" value="登录"></input>
+
+        </div>
+    </div>
+	 </form>
+    <a href="/register" class="bk_bottom_tips bk_important">没有帐号? 去注册</a>
 @endsection
+@section('my-js')
+<script src="/js/zepto.min.js"></script>
+	
+@endsection
+
